@@ -1,0 +1,110 @@
+{
+  "name": "100gmail update",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "325bf218-d37c-460a-a1bd-566cc266e8de",
+      "name": "When chat message received",
+      "webhookId": "94dfca59-8a5b-44cf-9350-ecad4b7252ff"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1CEEra4GGgjmCaYBJPGa9duo2KXgHwkVw0mAqIiWZtE8/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1CEEra4GGgjmCaYBJPGa9duo2KXgHwkVw0mAqIiWZtE8/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        220,
+        0
+      ],
+      "id": "b0789bd3-3d0a-4185-9362-89e5b7c2792d",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JjfBFH1qoF5RvJRY",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$json[\"email\"]}}\n\n",
+        "subject": "We are Hiring",
+        "emailType": "text",
+        "message": "=Hii! {{$json[\"name\"]}}\nThis is kalpana im from freelance team and i want to python developer role i need to adopt new technology like ai agents and promt engineer like that if you are intersted please let me know further information i would like to share your mail.\n\nthanks for your contribution.!\n\nBest Regards\nyuvasrikalpana,\nFreelance team\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        440,
+        0
+      ],
+      "id": "a36e4c06-a7ec-43da-a789-c99e2a505b37",
+      "name": "Gmail",
+      "webhookId": "89225db7-da3c-48db-a540-725e797db315",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Lk5mCMGBScAdvfzB",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e074a6f8-43f1-40ea-ba4c-a606ebd14cce",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "58597e2006cec2b0a9adb9ea1e55cdadac9cc5531fc066b62209b07802704259"
+  },
+  "id": "SZvPzKyr0C3solLj",
+  "tags": []
+}
